@@ -17,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => AdminMiddleware::class,
             'customer' => CustomerMiddleware::class,
         ]);
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
     })->create();
-    // ->withExceptions(function (Exceptions $exceptions) {
-    //     //
-    // })
