@@ -18,6 +18,7 @@ class Transaction extends Model
         'total_quantity',
         'total_transaksi',
         'tanggal_transaksi',
+        'updated_at'
     ];
 
     protected $casts = [

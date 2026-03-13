@@ -13,7 +13,7 @@
         <p><strong>Nama Customer:</strong> {{ $transaction->nama_customer }}</p>
         <p><strong>Total Quantity:</strong> {{ $transaction->total_quantity }}</p>
         <p><strong>Total Transaksi:</strong> Rp {{ number_format($transaction->total_transaksi, 0, ',', '.') }}</p>
-        <p><strong>Tanggal Transaksi:</strong> {{ $transaction->tanggal_transaksi->format('d-m-Y') }}</p>
+        <p><strong>Tanggal Transaksi:</strong> {{ $transaction->tanggal_transaksi->format('d-m-Y H:i:s') }}</p>
     </div>
 
     <h3 class="mb-3">Daftar Produk</h3>

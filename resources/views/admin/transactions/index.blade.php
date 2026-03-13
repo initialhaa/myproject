@@ -37,7 +37,7 @@
                     <td>{{ $transaction->nama_customer }}</td>
                     <td>{{ $transaction->total_quantity }}</td>
                     <td>Rp {{ number_format($transaction->total_transaksi, 0, ',', '.') }}</td>
-                    <td>{{ \Carbon\Carbon::parse($transaction->tanggal_transaksi)->format('d-m-Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($transaction->tanggal_transaksi)->format('d-m-Y H:i:s') }}</td>
                     <td>
                         <a href="{{ route('admin.transactions.show', $transaction) }}" class="btn btn-primary">Lihat Transaksi</a>
                     </td>

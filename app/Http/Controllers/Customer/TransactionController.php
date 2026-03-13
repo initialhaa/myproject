@@ -51,6 +51,7 @@ class TransactionController extends Controller
         $totalQuantity = 0;
         $totalAmount = 0;
         
+        
         foreach ($products as $product) {
             $qty = $quantities[$product->id] ?? 0;
             if ($qty > 0) {
@@ -76,7 +77,7 @@ class TransactionController extends Controller
                 'nama_customer' => Auth::user()->name,
                 'total_quantity' => $totalQuantity,
                 'total_transaksi' => $totalAmount,
-                'tanggal_transaksi' => now(),
+                'tanggal_transaksi' => Auth::user()->updated_at,
             ]);
             
             // Membuat transaction details
