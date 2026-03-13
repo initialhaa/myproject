@@ -127,6 +127,10 @@
             background: #95a5a6;
             color: white;
         }
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
         .form-group {
             margin-bottom: 1rem;
         }
@@ -142,24 +146,117 @@
             border-radius: 4px;
             font-size: 1rem;
         }
+        
+        /* Pagination Styles - Improved */
         .pagination {
             margin-top: 2rem;
             display: flex;
             justify-content: center;
-            gap: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.25rem;
         }
-        .pagination a, .pagination span {
-            padding: 0.5rem 0.75rem;
+        
+        .pagination > * {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            padding: 0 0.5rem;
             border: 1px solid #dee2e6;
-            text-decoration: none;
+            background: white;
             color: #3498db;
+            text-decoration: none;
             border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
-        .pagination .active span {
+        
+        .pagination a:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+            color: #2c3e50;
+        }
+        
+        .pagination .active {
             background: #3498db;
             color: white;
             border-color: #3498db;
+            font-weight: bold;
         }
+        
+        .pagination .disabled {
+            color: #6c757d;
+            pointer-events: none;
+            background: #f8f9fa;
+            border-color: #dee2e6;
+        }
+        
+        .pagination .dots {
+            border: none;
+            background: transparent;
+            color: #6c757d;
+            min-width: auto;
+            padding: 0 0.25rem;
+        }
+        
+        .pagination-info {
+            text-align: center;
+            margin-top: 1rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        nav[role="navigation"] {
+            margin-top: 2rem;
+        }
+        
+        nav[role="navigation"] div:first-child {
+            display: none; /* Menyembunyikan teks "Showing X to Y of Z results" jika tidak diinginkan */
+        }
+        
+        nav[role="navigation"] div:last-child {
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav[role="navigation"] svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        /* Styling untuk pagination tailwind/laravel default */
+        .pagination-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            flex-wrap: wrap;
+        }
+        
+        .pagination-links a,
+        .pagination-links span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            padding: 0 0.5rem;
+            border: 1px solid #dee2e6;
+            background: white;
+            color: #3498db;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .pagination-links span[aria-current="page"] {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+            font-weight: bold;
+        }
+        
         .search-box {
             margin-bottom: 1rem;
             display: flex;
@@ -191,6 +288,11 @@
             th, td {
                 padding: 0.75rem;
             }
+            .pagination > * {
+                min-width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+            }
         }
         @media (max-width: 480px) {
             .btn {
@@ -198,6 +300,14 @@
                 width: 100%;
                 margin: 0.5rem 0;
                 text-align: center;
+            }
+            .pagination {
+                gap: 0.15rem;
+            }
+            .pagination > * {
+                min-width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
             }
         }
     </style>

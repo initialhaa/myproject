@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             [
-                'username' => 'customer1',
+                'username' => 'hanafi',
                 'password' => Hash::make('hanafi123'),
                 'role' => 'customer',
                 'name' => 'hanafi',
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'username' => 'customer2',
+                'username' => 'jiun',
                 'password' => Hash::make('jiun123'),
                 'role' => 'customer',
                 'name' => 'jiun',
