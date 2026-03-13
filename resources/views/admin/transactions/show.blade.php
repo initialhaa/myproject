@@ -1,4 +1,3 @@
-{{-- resources/views/admin/transactions/show.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Detail Transaksi')

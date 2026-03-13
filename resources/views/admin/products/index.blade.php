@@ -1,4 +1,3 @@
-{{-- resources/views/admin/products/index.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Daftar Produk')

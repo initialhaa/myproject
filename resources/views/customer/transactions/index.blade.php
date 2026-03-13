@@ -1,4 +1,3 @@
-{{-- resources/views/customer/transactions/index.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Transaksi Saya')

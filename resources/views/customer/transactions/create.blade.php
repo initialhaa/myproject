@@ -1,4 +1,3 @@
-{{-- resources/views/customer/transactions/create.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Buat Transaksi')
@@ -140,8 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const price = parseFloat(input.closest('.product-row').dataset.price);
             const quantity = parseInt(input.value) || 0;
             const subtotal = price * quantity;
-
-            // Update subtotal display
             document.getElementById(`subtotal-${productId}`).textContent = formatRupiah(subtotal);
 
             if (quantity > 0) {
@@ -149,8 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 totalAmount += subtotal;
             }
         });
-
-        // Update summary
         document.getElementById('total-quantity').textContent = totalQuantity;
         document.getElementById('total-amount').textContent = formatRupiah(totalAmount);
         document.getElementById('grand-total').textContent = formatRupiah(totalAmount);
@@ -160,8 +155,6 @@ document.addEventListener('DOMContentLoaded', function() {
     quantityInputs.forEach(input => {
         input.addEventListener('input', calculateTotals);
     });
-
-    // Initial calculation
     calculateTotals();
 });
 </script>

@@ -1,4 +1,3 @@
-{{-- resources/views/layouts/app.blade.php --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -207,7 +206,7 @@
 <body>
     @if(Auth::check())
     <nav class="navbar">
-        <a href="/" class="navbar-brand">Mini Sales App</a>
+        <h1 class="navbar-brand">Toko Hanafi</h1>
         <div class="nav-menu">
             @if(Auth::user()->role === 'admin')
                 <a href="{{ route('admin.products.index') }}">Produk</a>
