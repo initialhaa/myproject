@@ -17,8 +17,9 @@ class TransactionController extends Controller
      */
     public function index(Request $request)
     {
-        $pencarian = Transaction::where('user_id', Auth::id())->orderBy('tanggal_transaksi', 'desc');
-        $transaksi = $pencarian->paginate(10);
+        $transactions = Transaction::where('user_id', Auth::id())
+            ->orderBy('tanggal_transaksi', 'desc')
+            ->paginate(10);
 
         return view('customer.transactions.index', compact('transactions'));
     }
@@ -28,7 +29,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $producs = Product::orderBy('nama_produk', 'asc')->get();
+        $products = Product::orderBy('nama_produk', 'asc')->get();
         return view('customer.transactions.create', compact('products'));
     }
 
@@ -41,13 +42,15 @@ class TransactionController extends Controller
             'quantities' => 'required|array',
             'quantities.*' => 'required|min:0'
         ]);
+        
         $quantities = $request->quantities;
-        $products = Product::whreIn('id', array_keys($quantities))->get();
+        $products = Product::whereIn('id', array_keys($quantities))->get();
 
         // Filter produk dengan quantity > 0
         $itemsToBuy = [];
         $totalQuantity = 0;
         $totalAmount = 0;
+        
         foreach ($products as $product) {
             $qty = $quantities[$product->id] ?? 0;
             if ($qty > 0) {
@@ -60,9 +63,11 @@ class TransactionController extends Controller
                 $totalAmount += $product->harga * $qty;
             }
         }
+        
         if (empty($itemsToBuy)) {
             return back()->with('error', 'Minimal satu produk harus dibeli');
         }
+        
         DB::beginTransaction();
         try {
             // Membuat transaction
@@ -73,6 +78,7 @@ class TransactionController extends Controller
                 'total_transaksi' => $totalAmount,
                 'tanggal_transaksi' => now(),
             ]);
+            
             // Membuat transaction details
             foreach ($itemsToBuy as $item) {
                 TransactionDetail::create([
@@ -82,6 +88,7 @@ class TransactionController extends Controller
                     'subtotal' => $item['subtotal'],
                 ]);
             }
+            
             DB::commit();
             return redirect()->route('customer.transactions.show', $transaction)
                 ->with('success', 'Transaksi berhasil dibuat');
@@ -91,15 +98,15 @@ class TransactionController extends Controller
         }
     }
 
-
     /**
      * Display the specified resource.
      */
-     public function show(Transaction $transaction)
+    public function show(Transaction $transaction)
     {
         if ($transaction->user_id !== Auth::id()) {
             abort(403, 'Unauthorized access');
         }
+        
         $transaction->load('details.product');
         return view('customer.transactions.show', compact('transaction'));
     }
