@@ -5,7 +5,8 @@
 @section('content')
 <div style="max-width: 400px; margin: 50px auto;">
     <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-        <h2 style="margin-bottom: 1.5rem; text-align: center;">Login</h2>
+        <h1 style="margin-bottom: 1.5rem; text-align: center;">Toko Hanafi</h1>
+        <h2 style="margin-bottom: 1.5rem; text-align: center;">Login </h2>
         
         <form method="POST" action="{{ route('login') }}">
             @csrf
