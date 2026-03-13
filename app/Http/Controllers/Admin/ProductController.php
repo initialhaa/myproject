@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -14,8 +13,6 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = Product::orderBy('nama_produk', 'asc');
-        
-        // Search functionality (nilai tambah)
         if ($request->has('search') && !empty($request->search)) {
             $query->where('nama_produk', 'like', '%' . $request->search . '%');
         }    
@@ -58,6 +55,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
+        $product = Product::findOrFail($id);
         return view('admin.products.edit', compact('product'));
     }
 
@@ -66,12 +64,13 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product->validate([
-            'nama_product' => 'required|max:255',
+        $request->validate([
+            'nama_produk' => 'required|max:255',
             'harga' => 'required|numeric|min:0'
         ]);
-        Product::updated($request->all());
-        return redirect()->route('admin.products.index')->with('success', 'berhasil di update');
+
+        $product->update($request->all());
+        return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diupdate');
     }
 
     /**
