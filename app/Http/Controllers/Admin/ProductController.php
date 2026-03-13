@@ -13,12 +13,14 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $pencarian = Product::orderBy('nama_produk', 'asc');
+        $query = Product::orderBy('nama_produk', 'asc');
+        
+        // Search functionality (nilai tambah)
         if ($request->has('search') && !empty($request->search)) {
-           $pencarian->where('nama_produk', 'like', '%' . $request->search . '%');
-        }
-        $product = $pencarian->paginate(10);
-        return view('admin.product.index', compact('product'));
+            $query->where('nama_produk', 'like', '%' . $request->search . '%');
+        }    
+        $products = $query->paginate(10);
+        return view('admin.products.index', compact('products'));
     }
 
     /**
